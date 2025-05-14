@@ -1,0 +1,197 @@
+/* Main styles with rem-based responsive design */
+
+/* REM calculation base - 750px design */
+html {
+  font-size: calc(100vw / 7.5);
+}
+
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 100px; /* 固定字体大小，防止大屏幕下过大 */
+  }
+}
+
+body {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}
+
+/* Container and flex utilities */
+.container {
+  width: 100%;
+  max-width: 7.5rem;
+  margin: 0 auto;
+  padding: 0 0.3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+/* Spacing utilities */
+.mt-1 { margin-top: 0.1rem; }
+.mt-2 { margin-top: 0.2rem; }
+.mt-3 { margin-top: 0.3rem; }
+.mb-1 { margin-bottom: 0.1rem; }
+.mb-2 { margin-bottom: 0.2rem; }
+.mb-3 { margin-bottom: 0.3rem; }
+.py-1 { padding-top: 0.1rem; padding-bottom: 0.1rem; }
+.py-2 { padding-top: 0.2rem; padding-bottom: 0.2rem; }
+.px-1 { padding-left: 0.1rem; padding-right: 0.1rem; }
+.px-2 { padding-left: 0.2rem; padding-right: 0.2rem; }
+
+/* Header styling */
+.header {
+  background-color: white;
+  box-shadow: 0 0.02rem 0.1rem rgba(0, 0, 0, 0.05);
+  padding: 0.2rem 0.3rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Common components */
+.btn {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: 0.1rem;
+  font-size: 0.28rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-primary {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.btn-primary:active {
+  background-color: #ff5252;
+  transform: scale(0.98);
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 0.2rem;
+  box-shadow: 0 0.04rem 0.08rem rgba(0, 0, 0, 0.1);
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:active {
+  transform: translateY(0.02rem);
+  box-shadow: 0 0.02rem 0.04rem rgba(0, 0, 0, 0.1);
+}
+
+/* Carousel enhancements */
+.carousel {
+  border-radius: 0.2rem;
+  overflow: hidden;
+  box-shadow: 0 0.04rem 0.08rem rgba(0, 0, 0, 0.1);
+}
+
+.carousel-indicator {
+  cursor: pointer;
+  width: 0.16rem;
+  height: 0.16rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 0.05rem;
+  transition: background-color 0.3s;
+}
+
+.carousel-indicator.active {
+  background-color: #fff;
+}
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-primary { color: #ff6b6b; }
+.text-secondary { color: #777; }
+.text-small { font-size: 0.24rem; }
+.text-medium { font-size: 0.28rem; }
+.text-large { font-size: 0.32rem; }
+.text-xl { font-size: 0.4rem; }
+.text-bold { font-weight: bold; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(0.5rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+}
+
+/* Loading animation */
+.loading {
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 0.06rem solid rgba(255, 107, 107, 0.3);
+  border-radius: 50%;
+  border-top-color: #ff6b6b;
+  animation: spin 1s infinite linear;
+  margin: 0.3rem auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Toast styling */
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.1rem;
+  z-index: 9999;
+  animation: fadeIn 0.3s, fadeOut 0.3s 1.7s;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+} 

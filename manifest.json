@@ -1,0 +1,41 @@
+{
+  "name": "H5活动页",
+  "short_name": "活动",
+  "description": "H5活动页 - 限时优惠折扣，新人专享优惠券，会员特惠日，尽在活动专区",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#f8f9fa",
+  "theme_color": "#ff6b6b",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "src/assets/images/app-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "src/assets/images/app-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "新人专享",
+      "short_name": "新人专享",
+      "description": "查看新人专享活动",
+      "url": "/index.html?activity=newuser",
+      "icons": [{ "src": "src/assets/images/activity2.svg", "sizes": "192x192" }]
+    },
+    {
+      "name": "限时抢购",
+      "short_name": "限时抢购",
+      "description": "查看限时抢购活动",
+      "url": "/index.html?activity=flash",
+      "icons": [{ "src": "src/assets/images/activity1.svg", "sizes": "192x192" }]
+    }
+  ],
+  "related_applications": []
+} 

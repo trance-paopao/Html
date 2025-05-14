@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="description" content="H5活动页 - 限时优惠折扣，新人专享优惠券，会员特惠日，尽在活动专区">
+  <meta name="theme-color" content="#ff6b6b">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  
+  <title>H5活动页</title>
+  
+  <!-- 预连接 -->
+  <link rel="dns-prefetch" href="//cdn.example.com">
+  <link rel="preconnect" href="//cdn.example.com" crossorigin>
+  
+  <!-- PWA 支持 -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="src/assets/images/app-icon-192.png">
+  
+  <!-- 优化CSS加载 -->
+  <link rel="preload" href="src/styles/reset.css" as="style">
+  <link rel="preload" href="src/styles/style.css" as="style">
+  <link rel="stylesheet" href="src/styles/reset.css">
+  <link rel="stylesheet" href="src/styles/style.css">
+  
+  <!-- 内联关键CSS -->
+  <style>
+    /* 确保页面首屏渲染时不闪烁 */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #f8f9fa;
+    }
+    #root {
+      min-height: 100vh;
+    }
+    .skeleton {
+      background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.5s infinite;
+      border-radius: 0.1rem;
+    }
+    @keyframes shimmer {
+      0% { background-position: -200% 0; }
+      100% { background-position: 200% 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- 骨架屏 -->
+  <div id="root">
+    <div style="height:0.8rem;padding:0.2rem 0.3rem;background-color:white;display:flex;justify-content:space-between;align-items:center">
+      <div class="skeleton" style="width:2rem;height:0.4rem"></div>
+      <div style="display:flex">
+        <div class="skeleton" style="width:0.8rem;height:0.3rem;margin-right:0.2rem"></div>
+        <div class="skeleton" style="width:0.8rem;height:0.3rem"></div>
+      </div>
+    </div>
+    <div class="skeleton" style="height:3rem;width:92%;margin:0.2rem auto 0"></div>
+    <div style="width:92%;margin:0.4rem auto 0">
+      <div class="skeleton" style="width:2.5rem;height:0.4rem;margin-bottom:0.2rem"></div>
+      <!-- 第一个卡片 -->
+      <div style="margin-bottom:0.3rem;border-radius:0.2rem;overflow:hidden;background:white;padding:0.3rem;box-shadow:0 0.04rem 0.08rem rgba(0,0,0,0.1);display:flex">
+        <div class="skeleton" style="width:30%;height:1.5rem;border-radius:0.1rem"></div>
+        <div style="flex:1;padding-left:0.2rem">
+          <div class="skeleton" style="width:80%;height:0.3rem"></div>
+          <div class="skeleton" style="width:100%;height:0.2rem;margin-top:0.1rem"></div>
+          <div class="skeleton" style="width:2rem;height:0.5rem;margin-top:0.2rem"></div>
+        </div>
+      </div>
+      <!-- 第二个卡片 -->
+      <div style="margin-bottom:0.3rem;border-radius:0.2rem;overflow:hidden;background:white;padding:0.3rem;box-shadow:0 0.04rem 0.08rem rgba(0,0,0,0.1);display:flex">
+        <div class="skeleton" style="width:30%;height:1.5rem;border-radius:0.1rem"></div>
+        <div style="flex:1;padding-left:0.2rem">
+          <div class="skeleton" style="width:70%;height:0.3rem"></div>
+          <div class="skeleton" style="width:90%;height:0.2rem;margin-top:0.1rem"></div>
+          <div class="skeleton" style="width:2rem;height:0.5rem;margin-top:0.2rem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- 离线支持提示 -->
+  <div id="offlineNotice" style="display:none;position:fixed;bottom:1rem;left:50%;transform:translateX(-50%);background-color:rgba(0,0,0,0.7);color:white;padding:0.2rem 0.4rem;border-radius:0.1rem;z-index:9999;">
+    您正在离线浏览，部分功能可能受限
+  </div>
+  
+  <!-- 应用脚本 -->
+  <script src="src/index.js" defer></script>
+  
+  <!-- 服务工作线程注册 -->
+  <script>
+    // 注册Service Worker实现离线缓存
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(registration => {
+            console.log('SW registered:', registration);
+          })
+          .catch(error => {
+            console.log('SW registration failed:', error);
+          });
+      });
+      
+      // 监听网络状态
+      window.addEventListener('online', () => {
+        document.getElementById('offlineNotice').style.display = 'none';
+      });
+      
+      window.addEventListener('offline', () => {
+        document.getElementById('offlineNotice').style.display = 'block';
+      });
+    }
+  </script>
+</body>
+</html> 

@@ -1,0 +1,319 @@
+/* Main styles with rem-based responsive design */
+
+/* CSS变量定义 */
+:root {
+  --primary-color: #ff6b6b;
+  --primary-color-dark: #ff5252;
+  --secondary-color: #777;
+  --text-color: #333;
+  --bg-color: #f8f9fa;
+  --white: #fff;
+  --shadow-sm: 0 0.02rem 0.1rem rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 0.04rem 0.08rem rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0.06rem 0.12rem rgba(0, 0, 0, 0.15);
+  --radius-sm: 0.1rem;
+  --radius-md: 0.2rem;
+  --radius-lg: 0.3rem;
+  --transition-fast: 0.2s;
+  --transition-normal: 0.3s;
+  --overlay-bg: rgba(0, 0, 0, 0.5);
+}
+
+/* REM calculation base - 750px design */
+html {
+  font-size: calc(100vw / 7.5);
+}
+
+@media screen and (min-width: 750px) {
+  html {
+    font-size: 100px; /* 固定字体大小，防止大屏幕下过大 */
+    max-width: 750px;
+    margin: 0 auto;
+  }
+  
+  body {
+    background-color: #f0f0f0;
+  }
+  
+  /* 添加手机模拟外壳 */
+  #root {
+    box-shadow: var(--shadow-lg);
+    border-radius: 0.2rem;
+    overflow: auto; /* 改为auto而不是hidden，允许滚动 */
+    min-height: 100vh;
+    height: auto; /* 允许内容扩展 */
+    position: relative;
+    margin: 0 auto;
+    max-width: 750px;
+  }
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Container and flex utilities */
+.container {
+  width: 100%;
+  max-width: 7.5rem;
+  margin: 0 auto;
+  padding: 0 0.3rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.items-center {
+  align-items: center;
+}
+
+/* Spacing utilities */
+.mt-1 { margin-top: 0.1rem; }
+.mt-2 { margin-top: 0.2rem; }
+.mt-3 { margin-top: 0.3rem; }
+.mb-1 { margin-bottom: 0.1rem; }
+.mb-2 { margin-bottom: 0.2rem; }
+.mb-3 { margin-bottom: 0.3rem; }
+.py-1 { padding-top: 0.1rem; padding-bottom: 0.1rem; }
+.py-2 { padding-top: 0.2rem; padding-bottom: 0.2rem; }
+.px-1 { padding-left: 0.1rem; padding-right: 0.1rem; }
+.px-2 { padding-left: 0.2rem; padding-right: 0.2rem; }
+
+/* Header styling */
+header {
+  background-color: var(--white);
+  box-shadow: var(--shadow-sm);
+  padding: 0.2rem 0.3rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+/* Common components */
+.btn {
+  display: inline-block;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  font-size: 0.28rem;
+  text-align: center;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--white);
+}
+
+.btn-primary:active {
+  background-color: var(--primary-color-dark);
+  transform: scale(0.98);
+}
+
+.card {
+  background-color: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  padding: 0.3rem;
+  margin-bottom: 0.3rem;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+  will-change: transform, box-shadow;
+}
+
+.card:active {
+  transform: translateY(0.02rem);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Carousel enhancements */
+.carousel {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+}
+
+.carousel-slides {
+  will-change: transform;
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition-normal) ease;
+}
+
+.carousel-slide {
+  position: relative;
+  overflow: hidden;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+.carousel-indicators {
+  position: absolute;
+  bottom: 0.2rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 2;
+}
+
+.carousel-indicator {
+  cursor: pointer;
+  width: 0.16rem;
+  height: 0.16rem;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  margin: 0 0.05rem;
+  transition: background-color var(--transition-normal);
+}
+
+.carousel-indicator.active {
+  background-color: var(--white);
+}
+
+/* Text utilities */
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-primary { color: var(--primary-color); }
+.text-secondary { color: var(--secondary-color); }
+.text-small { font-size: 0.24rem; }
+.text-medium { font-size: 0.28rem; }
+.text-large { font-size: 0.32rem; }
+.text-xl { font-size: 0.4rem; }
+.text-bold { font-weight: bold; }
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(0.5rem); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+  will-change: transform, opacity;
+}
+
+/* Loading animation */
+.loading {
+  width: 0.6rem;
+  height: 0.6rem;
+  border: 0.06rem solid rgba(255, 107, 107, 0.3);
+  border-radius: 50%;
+  border-top-color: var(--primary-color);
+  animation: spin 1s infinite linear;
+  margin: 0.3rem auto;
+  will-change: transform;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Toast styling */
+.toast {
+  position: fixed;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  color: var(--white);
+  padding: 0.2rem 0.4rem;
+  border-radius: var(--radius-sm);
+  z-index: 9999;
+  animation: fadeIn 0.3s, fadeOut 0.3s 1.7s;
+  will-change: opacity;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* 骨架屏样式 */
+.skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #f8f8f8 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius-sm);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* 活动卡片样式增强 */
+.card.flex {
+  display: flex;
+  align-items: stretch;
+}
+
+.card img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 优化动画效果，确保卡片可见 */
+.fade-in {
+  animation: fadeIn 0.5s ease-in;
+}
+
+.slide-up {
+  animation: slideUp 0.5s ease-out;
+  will-change: transform, opacity;
+  /* 不设置初始opacity为0，以确保内容可见 */
+}
+
+/* 修复大屏幕下的滚动问题 */
+@media screen and (min-width: 750px) {
+  #root {
+    overflow-y: auto;
+  }
+} 
