@@ -112,9 +112,6 @@ python -m http.server
 - iOS Safari 11.3+
 - Android Chrome 67+
 
-## 开发者
-
-技术支持：Claude 3.7 Sonnet
 
 ## 最新优化记录
 
